@@ -1,83 +1,45 @@
 <?php
-class TestModel extends \PHPUnit\Framework\TestCase{
+use dbcon;
 
-    public function getlogintest()
-    {
-    //     $this->visit('/')
-    //     ->see('Login')
-    //     ->type('boss@123.com', 'username')
-    //     ->type('12345', 'password')
-    //     ->press('Login');
-    //    return login;
+class ModelTest extends \PHPUnit_Framework_Testcase{
+public function testgetlogin()
+{
+   $user = new \App\Models\Users;
+   $user->setUserName('ImrulKayes');
+
+   $this->assertEquals($user->getUserName(), 'ImrulKayes');
+}
+
+public function testinsertmsg($senderid,$receiverid,$msg)
+{
+	$sql = "Insert into Message (Sender_Id,Receiver_Id,Message,Status) values('$senderid','$receiverid','$msg','unread')";
+	$this->assertEquals(mysqli_query($conn,$sql));
+}
+
+public function testshowchat()
+{
+    $user = new \App\Models\Users;
+    $this->assertEquals($user->getUserName(), 'ImrulKayes');
+    return 'login';
+	
+}
+
+ public function testalluser()
+{
+   
+	$sql = "Insert into Message (Sender_Id,Receiver_Id,Message,Status) values('$senderid','$receiverid','$msg','unread')";
+	$this->assertEquals(mysqli_query($conn,$sql));
+}
+// //for status is istype 
+public function testis_type($senderid,$receiverid,$is_type){
+    $user= new \App\Models\User;
+    $user->setUserName('ImrulKayes');
     
-        self::$options = array(
-                   'dbHostName' => 'localhost',
-                   'dbUserName' => 'tester',
-                   'dbPassword' => 'pw4tester',
-                   'dbName' => 'test',
-                   'dbTableName' => 'Test',
-                   );            
-        self::$dbHandle = new mysqli( self::$options[ 'dbHostName'], self::$options[ 'dbUserName'], self::$options[ 'dbPassword'], self::$options[ 'dbName'] );
-        if( self::$dbHandle->connect_errno)
-                {}
-    }
+    $this->assertEquals($user->getChat(), "Imrul Kayes");
+}
 
 
-     //for Session Destroy And Logout
-    public function logouttest()
-    {
-        
-    } 
-    //for Dropdown
-    public function dropdowntest()
-    {
-        
-    }
-    //Insert Message Function
-    public function insertmsgtest($senderid,$receiverid,$msg)
-    {
-        
-    }
-    //Show Chat Function
-    public function showchattest()
-    {
-        
-    }
-    //For Fetch All User Activity Status
-    public function allusertest()
-    {
-        
-    }
-    //for status is istype 
-    public function is_typetest($senderid,$receiverid,$is_type){
-        
-    }
-    //Last Update activity or for status online or offline
-    public function update_last_activitytest($senderid){
-        
-    }
-    //for user last activity
-    public function user_last_activitytest($username){
-        
-    }
-    public function user_last_seentest($username){
-        
-    }
-    //count total unread message
-    public function count_msgtest($senderid,$receiverid){
-        
-    }
-    //Details of itype status
-    public function is_type_detailstest($senderid,$receiverid){
-        
-    }
-    //Delete Message
-    public function remove_chattest($remove_chat){
-        
-    }
 }
 
 
 ?>
-
-
